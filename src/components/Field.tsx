@@ -1,19 +1,26 @@
 
+type FieldPropsType = {
+  className: string
+  id: string
+  label: string
+  type?: string
+}
 
-export const Field = () => {
+export const Field = ({className, id, type, label}: FieldPropsType) => {
   return (
-    <div className="todo__field field">
+    <div className={`field ${className}`}>
       <label
         className="field__label"
-        htmlFor="new-task"
+        htmlFor={id}
       >
-        New task
+        {label}
       </label>
       <input
         className="field__input"
-        id="new-task"
+        id={id}
         placeholder=" "
         autoComplete="off"
+        type={type}
       />
     </div>
   );
