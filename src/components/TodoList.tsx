@@ -3,15 +3,17 @@ import {TodoItem} from "./TodoItem";
 
 type TodoListProps = {
   tasks: Task[]
+  onDeleteTaskButtonClick: (id:Task['id']) => void;
+  onTaskCompleteChange: (id:Task['id'], isDone:Task['isDone']) => void;
 }
 
-type Task = {
+export type Task = {
   id: string;
   title: string;
   isDone: boolean;
 }
 
-export const TodoList = ({tasks}:TodoListProps) => {
+export const TodoList = ({tasks, onDeleteTaskButtonClick, onTaskCompleteChange}:TodoListProps) => {
   const hasTasks = true
 
   if (!hasTasks) {
@@ -27,6 +29,8 @@ export const TodoList = ({tasks}:TodoListProps) => {
         return (
           <TodoItem className='todo__item'
                     key={t.id}
+                    onDeleteTaskButtonClick={onDeleteTaskButtonClick}
+                    onTaskCompleteChange={onTaskCompleteChange}
                     id={t.id}
                     title={t.title}
                     isDone={t.isDone}

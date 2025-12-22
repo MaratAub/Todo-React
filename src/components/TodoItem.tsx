@@ -1,13 +1,16 @@
+import {Task} from "./TodoList";
 
 type TodoItemPropsType = {
   className: string
   id: string
   isDone: boolean
   title: string
+  onDeleteTaskButtonClick: (id: Task['id']) => void
+  onTaskCompleteChange: (id:Task['id'], isDone:Task['isDone']) => void;
 }
 
 
-export const TodoItem = ({className, isDone, id, title, }:TodoItemPropsType) => {
+export const TodoItem = ({className, isDone, id, title, onDeleteTaskButtonClick, onTaskCompleteChange }:TodoItemPropsType) => {
 
 
   return (
@@ -17,7 +20,7 @@ export const TodoItem = ({className, isDone, id, title, }:TodoItemPropsType) => 
         id={id}
         type="checkbox"
         checked={isDone}
-        readOnly
+        onChange={(event) => onTaskCompleteChange(id, event.target.checked)}
       />
       <label
         className="todo-item__label"
@@ -29,6 +32,7 @@ export const TodoItem = ({className, isDone, id, title, }:TodoItemPropsType) => 
         className="todo-item__delete-button"
         aria-label="Delete"
         title="Delete"
+        onClick={() => onDeleteTaskButtonClick(id)}
       >
         <svg
           width="20"

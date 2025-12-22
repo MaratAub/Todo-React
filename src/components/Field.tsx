@@ -4,9 +4,10 @@ type FieldPropsType = {
   id: string
   label: string
   type?: string
+  onInput:(e) => void
 }
 
-export const Field = ({className, id, type, label}: FieldPropsType) => {
+export const Field = ({className, id, type, label, onInput}: FieldPropsType) => {
   return (
     <div className={`field ${className}`}>
       <label
@@ -21,6 +22,7 @@ export const Field = ({className, id, type, label}: FieldPropsType) => {
         placeholder=" "
         autoComplete="off"
         type={type}
+        onInput={onInput}
       />
     </div>
   );
